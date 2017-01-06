@@ -14,14 +14,14 @@ void programDiagonals::tick(modelWidget *modelWidget){
             modelWidget->getBar()->setPixelColor(column, row, QColor(0, 0, 0));
         }
     }
-    _index++;
+    _index+=2;
     _index %= modelWidget->getBar()->width();
     modelWidget->getBar()->setPixelColor(_index, 2, QColor(255, 0, 0));
     if(_index%2==0){
         modelWidget->getBar()->setPixelColor(_index+1, 2, QColor(255, 0, 0));
     }
     modelWidget->getBar()->setPixelColor(_index+1, 1, QColor(255, 0, 0));
-    if(_index%2==1){
+    if(_index%2==0){
         modelWidget->getBar()->setPixelColor(_index+2, 1, QColor(255, 0, 0));
     }
     modelWidget->getBar()->setPixelColor(_index+2, 0, QColor(255, 0, 0));
