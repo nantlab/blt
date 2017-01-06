@@ -18,11 +18,11 @@ void programDiagonals::tick(modelWidget *modelWidget){
     if(_index%2==0){
         image->setPixel(_index+1, 2, qRgb(255,0,0));
     }
-    modelWidget->getBar()->setPixelColor(_index+1, 1, QColor(255, 0, 0));
+    image->setPixel(_index+1, 1, qRgb(255,0,0));
     if(_index%2==0){
         image->setPixel(_index+2, 1, qRgb(255,0,0));
     }
-    modelWidget->getBar()->setPixelColor(_index+2, 0, QColor(255, 0, 0));
+    image->setPixel(_index+2, 0, qRgb(255,0,0));
     if(_index%2==0){
         image->setPixel(_index+3, 0, qRgb(255,0,0));
     }
