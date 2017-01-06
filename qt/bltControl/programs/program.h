@@ -2,6 +2,7 @@
 #define PROGRAM_H
 
 #include <QObject>
+#include "modelwidget.h"
 
 class program : public QObject
 {
@@ -12,6 +13,7 @@ public:
 signals:
 
 public slots:
+    virtual void tick(modelWidget *modelWidget);
 };
 
 #endif // PROGRAM_H

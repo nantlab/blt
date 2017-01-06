@@ -3,7 +3,12 @@
 
 #include <QMainWindow>
 #include "modelwidget.h"
-#include "playerwidget.h"
+#include "controlwidget.h"
+
+#include "qoscsender.h"
+
+#include "programs/programrandom.h"
+#include "programs/programdiagonals.h"
 
 class MainWindow : public QMainWindow
 {
@@ -14,7 +19,11 @@ public:
     ~MainWindow();
 private:
     modelWidget *_modelWidget;
-    playerWidget *_playerWidget;
+    program *_program;
+    controlWidget *_controlWidget;
+    QOSCSender *_oscSender;
+public slots:
+    void onModelChange();
 };
 
 #endif // MAINWINDOW_H

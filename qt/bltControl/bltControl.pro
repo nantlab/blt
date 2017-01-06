@@ -26,12 +26,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     modelwidget.cpp \
-    playerwidget.cpp
+    playerwidget.cpp \
+    component.cpp \
+    inputwidget.cpp \
+    controlwidget.cpp \
+    audioanalyzerwidget.cpp \
+    metronomwidget.cpp \
+    oscinputwidget.cpp \
+    input.cpp \
+    programs/program.cpp \
+    programs/programrandom.cpp \
+    programs/programdiagonals.cpp
 
 HEADERS  += mainwindow.h \
     modelwidget.h \
-    playerwidget.h
+    playerwidget.h \
+    component.h \
+    inputwidget.h \
+    controlwidget.h \
+    audioanalyzerwidget.h \
+    metronomwidget.h \
+    oscinputwidget.h \
+    input.h \
+    programs/program.h \
+    programs/programrandom.h \
+    programs/programdiagonals.h
 
 CONFIG += mobility c++11
 MOBILITY = 
 
+include(../QOSC/QOSC.pri)

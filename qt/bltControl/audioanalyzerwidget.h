@@ -2,8 +2,11 @@
 #define AUDIOANALYZERWIDGET_H
 
 #include <QWidget>
+#include "input.h"
 
-class audioAnalyzerWidget : public QWidget
+class audioAnalyzerWidget :
+        public QWidget,
+        public input
 {
     Q_OBJECT
 public:

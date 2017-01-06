@@ -2,8 +2,11 @@
 #define OSCINPUTWIDGET_H
 
 #include <QWidget>
+#include "input.h"
 
-class oscInputWidget : public QWidget
+class oscInputWidget :
+        public QWidget,
+        public input
 {
     Q_OBJECT
 public:

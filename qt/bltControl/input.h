@@ -1,17 +1,12 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include <QObject>
 
-class input : public QObject
+class input
 {
-    Q_OBJECT
 public:
-    explicit input(QObject *parent = 0);
+    input();
 
-signals:
-
-public slots:
 };
 
 #endif // INPUT_H
