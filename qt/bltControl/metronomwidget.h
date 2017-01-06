@@ -1,9 +1,12 @@
 #ifndef METRONOMWIDGET_H
 #define METRONOMWIDGET_H
 
+#include <QLabel>
+#include <QStateMachine>
 #include <QTimer>
 #include <QWidget>
 #include "input.h"
+
 
 class metronomWidget :
         public QWidget,
@@ -15,12 +18,19 @@ public:
     QTimer* getTimer();
 
 private:
+    QStateMachine *_stateMachine;
+    QState *_onState;
+    QState *_offState;
     QTimer *_timer;
+    QLabel *_timeLabel;
 
 signals:
 
 public slots:
 private slots:
+    void onStarted();
+    void onStopped();
+
     void onIntervalChanged(int value);
 };
 
