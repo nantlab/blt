@@ -51,14 +51,14 @@ void setModule(int column, int row, int red, int green, int blue) {
   switch (row) {
     case 0: {
         for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-          upperRow.setPixelColor(column * PIXELS_PER_MODULE + i, upperRow.Color(red, green, blue));
+          upperRow.setPixelColor((UPPER_ROW_MODULES-1-column) * PIXELS_PER_MODULE + i, upperRow.Color(red, green, blue));
         }
         upperRow.show();
         break;
       }
     case 1: {
         for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-          middleRow.setPixelColor(column * PIXELS_PER_MODULE + i, middleRow.Color(red, green, blue));
+          middleRow.setPixelColor((MIDDLE_ROW_MODULES-1-column) * PIXELS_PER_MODULE + i, middleRow.Color(red, green, blue));
         }
         middleRow.show();
         break;
@@ -67,7 +67,7 @@ void setModule(int column, int row, int red, int green, int blue) {
         if (column != 0) {
           column--;
           for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-            lowerRow.setPixelColor(column * PIXELS_PER_MODULE + i, lowerRow.Color(red, green, blue));
+            lowerRow.setPixelColor((LOWER_ROW_MODULES-1-column) * PIXELS_PER_MODULE + i, lowerRow.Color(red, green, blue));
           }
           lowerRow.show();
         }
