@@ -11,20 +11,23 @@
 
 EthernetUDP Udp;
 byte mac[] = {
-  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xEC
 };
 
 IPAddress ip(192, 168, 178, 10);
-const unsigned int inPort = 8000;
+const unsigned int inPort = 8010;
 
 
 #define UPPER_ROW_PIN 11
 #define MIDDLE_ROW_PIN 12
 #define LOWER_ROW_PIN 13
+#define WIDTH 12
+#define HEIGHT 3
 #define UPPER_ROW_MODULES 11
 #define MIDDLE_ROW_MODULES 12
 #define LOWER_ROW_MODULES 11
 #define PIXELS_PER_MODULE 6
+#define CHANNELS_PER_PIXEL 3
 
 Adafruit_NeoPixel upperRow = Adafruit_NeoPixel(UPPER_ROW_MODULES * PIXELS_PER_MODULE, UPPER_ROW_PIN, NEO_RGB + NEO_KHZ800);
 Adafruit_NeoPixel middleRow = Adafruit_NeoPixel(MIDDLE_ROW_MODULES * PIXELS_PER_MODULE, MIDDLE_ROW_PIN, NEO_RGB + NEO_KHZ800);
@@ -44,64 +47,70 @@ bool isValidRGBColor(int red, int green, int blue) {
   return true;
 }
 
-void setModule(int row, int column, int red, int green, int blue) {
+void setModule(int column, int row, int red, int green, int blue) {
   switch (row) {
     case 0: {
         for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-          upperRow.setPixelColor(column * 6 + i, upperRow.Color(red, green, blue));
+          upperRow.setPixelColor(column * PIXELS_PER_MODULE + i, upperRow.Color(red, green, blue));
         }
         upperRow.show();
         break;
       }
     case 1: {
         for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-          middleRow.setPixelColor(column * 6 + i, middleRow.Color(red, green, blue));
+          middleRow.setPixelColor(column * PIXELS_PER_MODULE + i, middleRow.Color(red, green, blue));
         }
         middleRow.show();
         break;
       }
     case 2: {
-        for (int i = 0; i < PIXELS_PER_MODULE; i++) {
-          lowerRow.setPixelColor(column * 6 + i, lowerRow.Color(red, green, blue));
+        if (column != 0) {
+          column--;
+          for (int i = 0; i < PIXELS_PER_MODULE; i++) {
+            lowerRow.setPixelColor(column * PIXELS_PER_MODULE + i, lowerRow.Color(red, green, blue));
+          }
+          lowerRow.show();
         }
-        lowerRow.show();
         break;
       }
   }
 }
 void routeAll(OSCMessage &msg, int addrOffset) {
-  Serial.println("/all");
   int red = -1;
   int green = -1;
   int blue = -1;
-
-  if (msg.isInt(0)) {
-    red = msg.getInt(0);
-  }
-  if (msg.isInt(1)) {
-    green = msg.getInt(1);
-  }
-  if (msg.isInt(2)) {
-    blue = msg.getInt(2);
-  }
-
-  if (red != -1 && green != -1 && blue != -1) {
-    for (int i = 0; i < UPPER_ROW_MODULES; i++) {
-      setModule(0, i, red, green, blue);
-    }
-    for (int i = 0; i < MIDDLE_ROW_MODULES; i++) {
-      setModule(1, i, red, green, blue);
-    }
-    for (int i = 0; i < LOWER_ROW_MODULES; i++) {
-      setModule(2, i, red, green, blue);
+  if (msg.isBlob(0)) {
+    uint8_t blob[WIDTH * HEIGHT * CHANNELS_PER_PIXEL];
+    msg.getBlob(0, blob, WIDTH * HEIGHT * CHANNELS_PER_PIXEL);
+    for (int row = 0; row < HEIGHT; row++) {
+      for (int column = 0; column < WIDTH; column++) {
+        int index = (row * WIDTH + column) * CHANNELS_PER_PIXEL;
+        setModule(column, row, blob[index], blob[index + 1], blob[index + 2]);
+      }
     }
   } else {
-    Serial.println("routeAll: got invalid color");
+    if (msg.isInt(0)) {
+      red = msg.getInt(0);
+    }
+    if (msg.isInt(1)) {
+      green = msg.getInt(1);
+    }
+    if (msg.isInt(2)) {
+      blue = msg.getInt(2);
+    }
+    if (red != -1 && green != -1 && blue != -1) {
+      for (int row = 0; row < HEIGHT; row++) {
+        for (int column = 0; column < WIDTH; column++) {
+          setModule(column, row, red, green, blue);
+        }
+      }
+    } else {
+      Serial.println("routeAll: got invalid color");
+    }
   }
+
 }
 void routeRow(OSCMessage &msg, int addrOffset) {
-  Serial.println("/row");
-
   int row = -1;
   if (msg.isInt(0)) {
     row = msg.getInt(0);
@@ -121,29 +130,12 @@ void routeRow(OSCMessage &msg, int addrOffset) {
   }
 
   if (row != -1 && isValidRGBColor(red, green, blue)) {
-    int numberOfModules;
-    switch (row) {
-      case 0: {
-          numberOfModules = UPPER_ROW_MODULES;
-          break;
-        }
-      case 1: {
-          numberOfModules = MIDDLE_ROW_MODULES;
-          break;
-        }
-      case 2: {
-          numberOfModules = LOWER_ROW_MODULES;
-          break;
-        }
-    }
-
-    for (int column = 0; column < numberOfModules; column++) {
-      setModule(row, column, red, green, blue);
+    for (int column = 0; column < WIDTH; column++) {
+      setModule(column, row, red, green, blue);
     }
   }
 }
 void routeColumn(OSCMessage &msg, int addrOffset) {
-  Serial.println("/column");
   int column = -1;
   int red = -1;
   int green = -1;
@@ -163,16 +155,13 @@ void routeColumn(OSCMessage &msg, int addrOffset) {
   }
 
   if (column != -1 && isValidRGBColor(red, green, blue)) {
-    setModule(0, column, red, green, blue);
-    setModule(1, column, red, green, blue);
-    if (column != 0) {
-      setModule(0, column - 1, red, green, blue);
+    for (int row = 0; row < HEIGHT; row++) {
+      setModule(column, row, red, green, blue);
     }
   }
-
 }
+
 void routePixel(OSCMessage &msg, int addrOffset) {
-  Serial.println("/pixel");
   int column = -1;
   int row = -1;
   int red = -1;
@@ -195,13 +184,7 @@ void routePixel(OSCMessage &msg, int addrOffset) {
     blue = msg.getInt(4);
   }
   if (column != -1 && row != -1 && isValidRGBColor(red, green, blue)) {
-    if (row != 2) {
-      setModule(row, column, red, green, blue);
-    } else {
-      if (column != 0 ) {
-        setModule(row, column - 1, red, green, blue);
-      }
-    }
+    setModule(column, row, red, green, blue);
   }
 }
 
@@ -219,8 +202,6 @@ void setup() {
   Udp.begin(inPort);
 
   Serial.println("successfully set up ethernet");
-
-
 
   upperRow.begin();
   middleRow.begin();
