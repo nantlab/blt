@@ -13,18 +13,9 @@ class modelWidget : public QWidget
 public:
     explicit modelWidget(QWidget *parent = 0);
     void paintEvent(QPaintEvent * /* event */);
-    QByteArray serializeBar(){
-        QByteArray ba;
-        for(int row = 0; row < _bar->height(); row++){
-            for(int column = 0; column < _bar->width(); column++){
-                ba.append(_bar->pixelColor(column, row).red());
-                ba.append(_bar->pixelColor(column, row).green());
-                ba.append(_bar->pixelColor(column, row).blue());
-            }
-        }
-        qDebug() << ba;
-        return ba;
-    }
+
+    QByteArray serializeBar();
+
     QImage* getBar();
 
 private:
@@ -35,6 +26,10 @@ private:
 signals:
     void modelChanged();
 public slots:
+    void clearBar();
+    void clearLeftBench();
+    void clearMiddleBench();
+    void clearRightBench();
 };
 
 #endif // MODELWIDGET_H

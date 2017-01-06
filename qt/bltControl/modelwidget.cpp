@@ -10,35 +10,12 @@ modelWidget::modelWidget(QWidget *parent) :
     _rightBench(new QImage(3, 2, QImage::Format_RGB888))
 {
     setMinimumSize(400,400);
-    for(int row = 0; row < _bar->height(); row++){
-        for(int column = 0; column < _bar->width(); column++){
-            _bar->setPixelColor(column, row, QColor(0,0,0));
-        }
-    }
-    for(int row = 0; row < _middleBench->height(); row++){
-        for(int column = 0; column < _middleBench->width(); column++){
-            _middleBench->setPixelColor(column, row, QColor(0,0,0));
-        }
-    }
-    for(int row = 0; row < _rightBench->height(); row++){
-        for(int column = 0; column < _rightBench->width(); column++){
-            _rightBench->setPixelColor(column, row, QColor(0,0,0));
-        }
-    }
-
-    _bar->setPixelColor(1, 1, QColor(255,255,0));
-    _bar->setPixelColor(2, 1, QColor(255,255,0));
-
-    _bar->setPixelColor(8, 0, QColor(255,255,0));
-    _bar->setPixelColor(7, 0, QColor(255,255,0));
-    _bar->setPixelColor(9, 2, QColor(255,255,0));
-    _bar->setPixelColor(10, 2, QColor(255,255,0));
 
 
-    _leftBench->setPixelColor(0,0, QColor(255,0,255));
-    _middleBench->setPixelColor(2,0, QColor(0,255,255));
-    _rightBench->setPixelColor(2,0, QColor(0,255,255));
-
+    clearBar();
+    clearLeftBench();
+    clearMiddleBench();
+    clearRightBench();
     emit modelChanged();
 }
 
@@ -67,7 +44,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         }
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _bar->pixelColor(column, 0));
+        painter->fillPath(path, QColor(_bar->pixel(column, 0)));
         painter->drawPath(path);
         x += length/2;
     }
@@ -88,7 +65,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         }
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _bar->pixelColor(column, 1));
+        painter->fillPath(path, QColor(_bar->pixel(column, 1)));
         painter->drawPath(path);
         x += length/2;
     }
@@ -110,7 +87,7 @@ void modelWidget::paintEvent(QPaintEvent *)
             }
             QPen pen(Qt::white, 1);
             painter->setPen(pen);
-            painter->fillPath(path, _bar->pixelColor(column, 2));
+            painter->fillPath(path, QColor(_bar->pixel(column, 2)));
             painter->drawPath(path);
         }
 
@@ -131,7 +108,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         path.lineTo(x, y);
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _leftBench->pixelColor(0, 0));
+        painter->fillPath(path, QColor(_leftBench->pixel(0, 0)));
         painter->drawPath(path);
     }
 
@@ -153,7 +130,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         }
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _leftBench->pixelColor(column, 1));
+        painter->fillPath(path, QColor(_leftBench->pixel(column, 1)));
         painter->drawPath(path);
         x += length/2;
     }
@@ -171,7 +148,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         path.lineTo(x+length, y);
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _middleBench->pixelColor(2, 0));
+        painter->fillPath(path, QColor(_middleBench->pixel(2, 0)));
         painter->drawPath(path);
     }
 
@@ -192,7 +169,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         }
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _middleBench->pixelColor(column, 1));
+        painter->fillPath(path, QColor(_middleBench->pixel(column, 1)));
         painter->drawPath(path);
         x += length/2;
     }
@@ -210,7 +187,7 @@ void modelWidget::paintEvent(QPaintEvent *)
         path.lineTo(x+length, y);
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _rightBench->pixelColor(2, 0));
+        painter->fillPath(path, QColor(_rightBench->pixel(2, 0)));
         painter->drawPath(path);
     }
 
@@ -231,10 +208,61 @@ void modelWidget::paintEvent(QPaintEvent *)
         }
         QPen pen(Qt::white, 1);
         painter->setPen(pen);
-        painter->fillPath(path, _rightBench->pixelColor(column, 1));
+        painter->fillPath(path, QColor(_rightBench->pixel(column, 1)));
         painter->drawPath(path);
         x += length/2;
     }
+}
+
+void modelWidget::clearBar(){
+    for(int row = 0; row < _bar->height(); row++){
+        for(int column = 0; column < _bar->width(); column++){
+            _bar->setPixel(column, row, qRgb(0,0,0));
+        }
+    }
+}
+void modelWidget::clearLeftBench(){
+    for(int row = 0; row < _leftBench->height(); row++){
+        for(int column = 0; column < _leftBench->width(); column++){
+            _leftBench->setPixel(column, row, qRgb(0,0,0));
+        }
+    }
+}
+
+void modelWidget::clearMiddleBench()
+{
+    for(int row = 0; row < _middleBench->height(); row++){
+        for(int column = 0; column < _middleBench->width(); column++){
+            _middleBench->setPixel(column, row, qRgb(0,0,0));
+        }
+    }
+}
+
+void modelWidget::clearRightBench()
+{
+    for(int row = 0; row < _rightBench->height(); row++){
+        for(int column = 0; column < _rightBench->width(); column++){
+            _rightBench->setPixel(column, row, qRgb(0,0,0));
+        }
+    }
+}
+QByteArray modelWidget::serializeBar(){
+    QByteArray ba;
+    auto bits = _bar->bits();
+    for(int i = 0; i < _bar->width() * _bar->height(); i++){
+        ba.append(bits[i]);
+    }
+    /*
+    for(int row = 0; row < _bar->height(); row++){
+        for(int column = 0; column < _bar->width(); column++){
+            ba.append(_bar->pixelColor(column, row).red());
+            ba.append(_bar->pixelColor(column, row).green());
+            ba.append(_bar->pixelColor(column, row).blue());
+        }
+    }
+    */
+    qDebug() << ba;
+    return ba;
 }
 
 QImage *modelWidget::getBar(){
