@@ -9,7 +9,7 @@ modelWidget::modelWidget(QWidget *parent) :
     _middleBench(new QImage(5, 2, QImage::Format_RGB888)),
     _rightBench(new QImage(3, 2, QImage::Format_RGB888))
 {
-    setMinimumSize(400,400);
+    //setMinimumSize(400,400);
 
 
     clearBar();

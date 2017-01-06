@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(mainWidget);
 
     connect(_controlWidget->getInputWidget()->getMetronomWidget()->getTimer(), SIGNAL(timeout()), this, SLOT(onModelChange()));
+    showFullScreen();
+    _modelWidget->setMinimumSize(500, 400);
+
 }
 
 MainWindow::~MainWindow()
