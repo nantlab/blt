@@ -32,6 +32,6 @@ HEADERS  += mainwindow.h \
     modelwidget.h \
     playerwidget.h
 
-CONFIG += mobility
+CONFIG += mobility c++11
 MOBILITY = 
 
