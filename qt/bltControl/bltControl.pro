@@ -56,3 +56,6 @@ CONFIG += mobility c++11
 MOBILITY = 
 
 include(../QOSC/QOSC.pri)
+
+RESOURCES += \
+    resources/resources.qrc
