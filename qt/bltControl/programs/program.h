@@ -8,7 +8,13 @@ class program : public QObject
 {
     Q_OBJECT
 public:
-    explicit program(QObject *parent = 0);
+    explicit program(QString name, int duration = 120, QObject *parent = 0);
+    QString getName();
+    int getDuration();
+
+protected:
+    QString _name;
+    int _duration;
 
 signals:
 

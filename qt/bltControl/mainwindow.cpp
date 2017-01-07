@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     _modelWidget(new modelWidget(this)),
-    _program(new programDiagonals(this)),
+    _program(new programDiagonals(120, this)),
     _controlWidget(new controlWidget()),
     _oscSenderBar(new QOSCSender("192.168.178.10", 8010)),
     _oscSenderLeftBench(new QOSCSender("192.168.178.11", 8011)),

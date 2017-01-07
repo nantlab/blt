@@ -1,7 +1,7 @@
 #include "programrandom.h"
 
-programRandom::programRandom(QObject *parent) :
-    program(parent)
+programRandom::programRandom(int duration, QObject *parent) :
+    program("random", duration, parent)
 {
 
 }

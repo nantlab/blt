@@ -9,7 +9,7 @@ class programDiagonals :
 {
     Q_OBJECT
 public:
-    explicit programDiagonals(QObject *parent = 0);
+    explicit programDiagonals(int duration, QObject *parent = 0);
 private:
     int _index;
 

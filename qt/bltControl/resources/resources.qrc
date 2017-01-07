@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>icons/font-awesome_4-7-0_pause_256_0_d35400_none.png</file>
         <file>icons/font-awesome_4-7-0_play_256_0_d35400_none.png</file>
+        <file>icons/font-awesome_4-7-0_step-backward_256_0_d35400_none.png</file>
+        <file>icons/font-awesome_4-7-0_step-forward_256_0_d35400_none.png</file>
     </qresource>
 </RCC>

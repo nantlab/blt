@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     input.cpp \
     programs/program.cpp \
     programs/programrandom.cpp \
-    programs/programdiagonals.cpp
+    programs/programdiagonals.cpp \
+    playercontrolwidget.cpp
 
 HEADERS  += mainwindow.h \
     modelwidget.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     input.h \
     programs/program.h \
     programs/programrandom.h \
-    programs/programdiagonals.h
+    programs/programdiagonals.h \
+    playercontrolwidget.h
 
 CONFIG += mobility c++11
 MOBILITY = 

@@ -9,7 +9,7 @@ class programRandom :
 {
     Q_OBJECT
 public:
-    explicit programRandom(QObject *parent = 0);
+    explicit programRandom(int duration, QObject *parent = 0);
 
 signals:
 

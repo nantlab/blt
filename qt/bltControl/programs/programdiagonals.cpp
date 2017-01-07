@@ -1,8 +1,8 @@
 #include "programdiagonals.h"
 #include <QDebug>
 
-programDiagonals::programDiagonals(QObject *parent) :
-    program(parent)
+programDiagonals::programDiagonals(int duration, QObject *parent) :
+    program("diagonals", duration, parent)
 {
 
 }
