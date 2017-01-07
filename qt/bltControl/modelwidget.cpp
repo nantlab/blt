@@ -246,7 +246,7 @@ void modelWidget::clearRightBench()
         }
     }
 }
-QByteArray modelWidget::serializeBar(){
+QByteArray modelWidget::getSerializedBar(){
     QByteArray ba;
     auto bits = _bar->bits();
     for(int i = 0; i < _bar->width() * _bar->height(); i++){
@@ -265,6 +265,47 @@ QByteArray modelWidget::serializeBar(){
     return ba;
 }
 
+QByteArray modelWidget::getSerializedLeftBench()
+{
+    QByteArray ba;
+    auto bits = _leftBench->bits();
+    for(int i = 0; i < _leftBench->width() * _leftBench->height(); i++){
+        ba.append(bits[i]);
+    }
+    return ba;
+}
+
+QByteArray modelWidget::getSerializedMiddleBench()
+{
+    QByteArray ba;
+    auto bits = _middleBench->bits();
+    for(int i = 0; i < _middleBench->width() * _middleBench->height(); i++){
+        ba.append(bits[i]);
+    }
+    return ba;
+}
+
+QByteArray modelWidget::getSerializedRightBench()
+{
+    QByteArray ba;
+    auto bits = _leftBench->bits();
+    for(int i = 0; i < _leftBench->width() * _leftBench->height(); i++){
+        ba.append(bits[i]);
+    }
+    return ba;
+}
 QImage *modelWidget::getBar(){
     return _bar;
+}
+
+QImage *modelWidget::getLeftBench(){
+    return _leftBench;
+}
+
+QImage *modelWidget::getMiddleBench(){
+    return _middleBench;
+}
+
+QImage *modelWidget::getRightBench(){
+    return _rightBench;
 }

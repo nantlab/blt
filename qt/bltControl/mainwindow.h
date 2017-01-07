@@ -21,7 +21,10 @@ private:
     modelWidget *_modelWidget;
     program *_program;
     controlWidget *_controlWidget;
-    QOSCSender *_oscSender;
+    QOSCSender *_oscSenderBar;
+    QOSCSender *_oscSenderLeftBench;
+    QOSCSender *_oscSenderMiddleBench;
+    QOSCSender *_oscSenderRightBench;
 public slots:
     void onModelChange();
 };

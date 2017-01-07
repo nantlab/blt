@@ -14,9 +14,15 @@ public:
     explicit modelWidget(QWidget *parent = 0);
     void paintEvent(QPaintEvent * /* event */);
 
-    QByteArray serializeBar();
+    QByteArray getSerializedBar();
+    QByteArray getSerializedLeftBench();
+    QByteArray getSerializedMiddleBench();
+    QByteArray getSerializedRightBench();
 
     QImage* getBar();
+    QImage* getLeftBench();
+    QImage* getMiddleBench();
+    QImage* getRightBench();
 
 private:
     QImage *_bar;

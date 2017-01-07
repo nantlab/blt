@@ -7,7 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
     _modelWidget(new modelWidget(this)),
     _program(new programDiagonals(this)),
     _controlWidget(new controlWidget()),
-    _oscSender(new QOSCSender("192.168.178.10", 8010))
+    _oscSenderBar(new QOSCSender("192.168.178.10", 8010)),
+    _oscSenderLeftBench(new QOSCSender("192.168.178.11", 8011)),
+    _oscSenderMiddleBench(new QOSCSender("192.168.178.12", 8012)),
+    _oscSenderRightBench(new QOSCSender("192.168.178.13", 8013))
 {
     auto mainWidget = new QWidget(this);
     auto mainLayout = new QHBoxLayout(mainWidget);
@@ -31,8 +34,7 @@ MainWindow::~MainWindow()
 void MainWindow::onModelChange()
 {
     _program->tick(_modelWidget);
-    qDebug()<<"model changed";
     auto message = new QOSCMessage("/all", this);
-    message->add(_modelWidget->serializeBar());
-    _oscSender->send(message);
+    message->add(_modelWidget->getSerializedBar());
+    _oscSenderBar->send(message);
 }
