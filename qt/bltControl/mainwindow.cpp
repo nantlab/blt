@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     _modelWidget(new modelWidget(this)),
-    _program(new programDiagonals(120, this)),
+    _program(new programDiagonals(120)),
     _controlWidget(new controlWidget()),
     _oscSenderBar(new QOSCSender("192.168.178.10", 8010)),
     _oscSenderLeftBench(new QOSCSender("192.168.178.11", 8011)),
@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_controlWidget->getInputWidget()->getMetronomWidget()->getTimer(), SIGNAL(timeout()), this, SLOT(onModelChange()));
     showFullScreen();
     _modelWidget->setMinimumSize(500, 400);
+
+    _controlWidget->getPlayerWidget()->play(_program);
 
 }
 

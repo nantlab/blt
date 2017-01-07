@@ -249,19 +249,10 @@ void modelWidget::clearRightBench()
 QByteArray modelWidget::getSerializedBar(){
     QByteArray ba;
     auto bits = _bar->bits();
-    for(int i = 0; i < _bar->width() * _bar->height(); i++){
+    for(int i = 0; i < _bar->width() * _bar->height() * 3; i++){
+        qDebug()<<bits[i];
         ba.append(bits[i]);
     }
-    /*
-    for(int row = 0; row < _bar->height(); row++){
-        for(int column = 0; column < _bar->width(); column++){
-            ba.append(_bar->pixelColor(column, row).red());
-            ba.append(_bar->pixelColor(column, row).green());
-            ba.append(_bar->pixelColor(column, row).blue());
-        }
-    }
-    */
-    qDebug() << ba;
     return ba;
 }
 
@@ -269,7 +260,7 @@ QByteArray modelWidget::getSerializedLeftBench()
 {
     QByteArray ba;
     auto bits = _leftBench->bits();
-    for(int i = 0; i < _leftBench->width() * _leftBench->height(); i++){
+    for(int i = 0; i < _leftBench->width() * _leftBench->height() * 3; i++){
         ba.append(bits[i]);
     }
     return ba;
@@ -279,7 +270,7 @@ QByteArray modelWidget::getSerializedMiddleBench()
 {
     QByteArray ba;
     auto bits = _middleBench->bits();
-    for(int i = 0; i < _middleBench->width() * _middleBench->height(); i++){
+    for(int i = 0; i < _middleBench->width() * _middleBench->height() * 3; i++){
         ba.append(bits[i]);
     }
     return ba;
@@ -289,7 +280,7 @@ QByteArray modelWidget::getSerializedRightBench()
 {
     QByteArray ba;
     auto bits = _leftBench->bits();
-    for(int i = 0; i < _leftBench->width() * _leftBench->height(); i++){
+    for(int i = 0; i < _leftBench->width() * _leftBench->height() * 3; i++){
         ba.append(bits[i]);
     }
     return ba;

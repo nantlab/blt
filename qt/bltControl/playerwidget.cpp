@@ -9,6 +9,7 @@
 
 playerWidget::playerWidget(QWidget *parent) :
     QWidget(parent),
+    _thread(new QThread(this)),
     _playlistWidget(new QTableWidget(this)),
     _controlWidget(new playerControlWidget(this))
 {

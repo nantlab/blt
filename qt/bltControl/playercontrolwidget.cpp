@@ -3,7 +3,9 @@
 #include <QSlider>
 #include <QToolButton>
 
-playerControlWidget::playerControlWidget(QWidget *parent) : QWidget(parent)
+playerControlWidget::playerControlWidget(QWidget *parent) :
+    QWidget(parent),
+    _progressSlider(new QSlider(this))
 {
     auto mainLayout = new QHBoxLayout(this);
     setLayout(mainLayout);
@@ -13,11 +15,10 @@ playerControlWidget::playerControlWidget(QWidget *parent) : QWidget(parent)
     playPauseButton->setIcon(QIcon(":icons/font-awesome_4-7-0_play_256_0_d35400_none.png"));
     auto forwardButton = new QToolButton(this);
     forwardButton->setIcon(QIcon(":icons/font-awesome_4-7-0_step-forward_256_0_d35400_none.png"));
-    auto progressSlider = new QSlider(this);
-    progressSlider->setOrientation(Qt::Horizontal);
+    _progressSlider->setRange(0,100);
+    _progressSlider->setOrientation(Qt::Horizontal);
     mainLayout->addWidget(backwardButton);
     mainLayout->addWidget(playPauseButton);
     mainLayout->addWidget(forwardButton);
-    mainLayout->addWidget(progressSlider);
-
+    mainLayout->addWidget(_progressSlider);
 }
