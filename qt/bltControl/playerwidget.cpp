@@ -6,15 +6,18 @@
 
 #include "programs/programdiagonals.h"
 #include "programs/programrandom.h"
+#include "programs/programcircles.h"
 
-playerWidget::playerWidget(QWidget *parent) :
+playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     QWidget(parent),
+    _modelWidget(modelWidget),
     _thread(new QThread(this)),
     _playlistWidget(new QTableWidget(this)),
     _controlWidget(new playerControlWidget(this))
 {
     _programs.push_back(new programDiagonals(120));
     _programs.push_back(new programRandom(120));
+    _programs.push_back(new programCircles(120));
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(_playlistWidget);
     mainLayout->addWidget(_controlWidget);
@@ -37,4 +40,8 @@ playerWidget::playerWidget(QWidget *parent) :
         _playlistWidget->setItem(i, 1, new QTableWidgetItem(QString::number(_programs[i]->getDuration())));
     }
 
+    connect(_controlWidget->getPreviousButton(), SIGNAL(clicked(bool)), this, SLOT(previous()));
+    connect(_controlWidget->getNextButton(), SIGNAL(clicked(bool)), this, SLOT(next()));
+
+    connect(_playlistWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(onProgramSelected(QModelIndex)));
 }

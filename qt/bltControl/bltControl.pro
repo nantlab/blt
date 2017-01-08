@@ -27,7 +27,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     modelwidget.cpp \
     playerwidget.cpp \
-    component.cpp \
     inputwidget.cpp \
     controlwidget.cpp \
     audioanalyzerwidget.cpp \
@@ -42,7 +41,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     modelwidget.h \
     playerwidget.h \
-    component.h \
     inputwidget.h \
     controlwidget.h \
     audioanalyzerwidget.h \
@@ -52,7 +50,8 @@ HEADERS  += mainwindow.h \
     programs/program.h \
     programs/programrandom.h \
     programs/programdiagonals.h \
-    playercontrolwidget.h
+    playercontrolwidget.h \
+    programs/programcircles.h
 
 CONFIG += mobility c++11
 MOBILITY = 

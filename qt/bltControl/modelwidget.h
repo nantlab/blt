@@ -1,11 +1,17 @@
 #ifndef MODELWIDGET_H
 #define MODELWIDGET_H
 
-#include "component.h"
 #include <QByteArray>
 #include <QBuffer>
 #include <QImage>
 #include <QWidget>
+
+enum componentEnum{
+    BAR,
+    LEFTBENCH,
+    MIDDLEBENCH,
+    RIGHTBENCH
+};
 
 class modelWidget : public QWidget
 {
@@ -24,6 +30,8 @@ public:
     QImage* getMiddleBench();
     QImage* getRightBench();
 
+
+
 private:
     QImage *_bar;
     QImage *_leftBench;
@@ -36,6 +44,7 @@ public slots:
     void clearLeftBench();
     void clearMiddleBench();
     void clearRightBench();
+    void setPixel(componentEnum component, int column, int row, int red, int green, int blue);
 };
 
 #endif // MODELWIDGET_H

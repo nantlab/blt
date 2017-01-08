@@ -1,4 +1,6 @@
 #include "modelwidget.h"
+
+#include <QDebug>
 #include <QtMath>
 #include <QPainter>
 
@@ -244,6 +246,27 @@ void modelWidget::clearRightBench()
         for(int column = 0; column < _rightBench->width(); column++){
             _rightBench->setPixel(column, row, qRgb(0,0,0));
         }
+    }
+}
+
+void modelWidget::setPixel(componentEnum component, int column, int row, int red, int green, int blue){
+    switch(component){
+    case BAR: {
+        _bar->setPixel(column, row, qRgb(red, green, blue));
+        break;
+    }
+    case LEFTBENCH: {
+        _leftBench->setPixel(column, row, qRgb(red, green, blue));
+        break;
+    }
+    case MIDDLEBENCH: {
+        _middleBench->setPixel(column, row, qRgb(red, green, blue));
+        break;
+    }
+    case RIGHTBENCH: {
+        _rightBench->setPixel(column, row, qRgb(red, green, blue));
+        break;
+    }
     }
 }
 QByteArray modelWidget::getSerializedBar(){
