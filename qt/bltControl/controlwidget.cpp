@@ -33,7 +33,16 @@ playerWidget *controlWidget::getPlayerWidget(){
 
 void controlWidget::onModelChanged()
 {
-    auto message = new QOSCMessage("/all", this);
-    message->add(_modelWidget->getSerializedBar());
-    _oscSenderBar->send(message);
+    auto barMessage = new QOSCMessage("/all", this);
+    barMessage->add(_modelWidget->getSerializedBar());
+    _oscSenderBar->send(barMessage);
+    auto leftBenchMessage = new QOSCMessage("/all", this);
+    leftBenchMessage->add(_modelWidget->getSerializedLeftBench());
+    _oscSenderLeftBench->send(leftBenchMessage);
+    auto middleBenchMessage = new QOSCMessage("/all", this);
+    middleBenchMessage->add(_modelWidget->getSerializedMiddleBench());
+    _oscSenderMiddleBench->send(middleBenchMessage);
+    auto rightBenchMessage = new QOSCMessage("/all", this);
+    rightBenchMessage->add(_modelWidget->getSerializedRightBench());
+    _oscSenderRightBench->send(rightBenchMessage);
 }
