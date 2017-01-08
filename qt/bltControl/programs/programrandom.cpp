@@ -9,6 +9,9 @@ programRandom::programRandom(int duration, QObject *parent) :
 void programRandom::tick(modelWidget *modelWidget)
 {
     modelWidget->clearBar();
+    modelWidget->clearLeftBench();
+    //MIDDLEBENCH, 255, 0, 0);
+    modelWidget->getLeftBench()->setPixel(0, 1, qRgb(0,0,0));
     auto image = modelWidget->getBar();
 
     for(int i = 0; i < 4; i++){

@@ -17,6 +17,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void closeEvent(QCloseEvent *event){
+        _modelWidget->clearBar();
+        _modelWidget->clear(BAR);
+        _modelWidget->clear(LEFTBENCH);
+        _modelWidget->clear(MIDDLEBENCH);
+        _modelWidget->clear(RIGHTBENCH);
+        emit _modelWidget->modelChanged();
+    }
+
 private:
     modelWidget *_modelWidget;
     program *_program;

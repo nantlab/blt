@@ -11,8 +11,6 @@ modelWidget::modelWidget(QWidget *parent) :
     _middleBench(new QImage(5, 2, QImage::Format_RGB888)),
     _rightBench(new QImage(3, 2, QImage::Format_RGB888))
 {
-    //setMinimumSize(400,400);
-
 
     clearBar();
     clearLeftBench();
@@ -340,8 +338,8 @@ QByteArray modelWidget::getSerializedMiddleBench()
 QByteArray modelWidget::getSerializedRightBench()
 {
     QByteArray ba;
-    auto bits = _leftBench->bits();
-    for(int i = 0; i < _leftBench->width() * _leftBench->height() * 3; i++){
+    auto bits = _rightBench->bits();
+    for(int i = 0; i < _rightBench->width() * _rightBench->height() * 3; i++){
         ba.append(bits[i]);
     }
     return ba;
