@@ -44,6 +44,8 @@ public slots:
     void clearLeftBench();
     void clearMiddleBench();
     void clearRightBench();
+    void clear(componentEnum component, int red = 0, int green = 0, int blue = 0);
+
     void setPixel(componentEnum component, int column, int row, int red, int green, int blue);
 };
 

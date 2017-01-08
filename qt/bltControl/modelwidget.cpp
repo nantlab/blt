@@ -249,6 +249,44 @@ void modelWidget::clearRightBench()
     }
 }
 
+void modelWidget::clear(componentEnum component, int red, int green, int blue)
+{
+    switch(component){
+    case BAR: {
+        for(int row = 0; row < _bar->height(); row++){
+            for(int column = 0; column < _bar->width(); column++){
+                _bar->setPixel(column, row, qRgb(red, green, blue));
+            }
+        }
+        break;
+    }
+    case LEFTBENCH: {
+        for(int row = 0; row < _leftBench->height(); row++){
+            for(int column = 0; column < _leftBench->width(); column++){
+                _leftBench->setPixel(column, row, qRgb(red, green, blue));
+            }
+        }
+        break;
+    }
+    case MIDDLEBENCH: {
+        for(int row = 0; row < _middleBench->height(); row++){
+            for(int column = 0; column < _middleBench->width(); column++){
+                _middleBench->setPixel(column, row, qRgb(red, green, blue));
+            }
+        }
+        break;
+    }
+    case RIGHTBENCH: {
+        for(int row = 0; row < _rightBench->height(); row++){
+            for(int column = 0; column < _rightBench->width(); column++){
+                _rightBench->setPixel(column, row, qRgb(red, green, blue));
+            }
+        }
+        break;
+    }
+    }
+}
+
 void modelWidget::setPixel(componentEnum component, int column, int row, int red, int green, int blue){
     switch(component){
     case BAR: {

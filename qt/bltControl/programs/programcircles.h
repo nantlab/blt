@@ -35,6 +35,9 @@ public slots:
                 }
             }
         }
+        modelWidget->clear(LEFTBENCH, 255,0,0);
+        modelWidget->clear(MIDDLEBENCH, 0,255,0);
+        modelWidget->clear(RIGHTBENCH, 0,0,255);
 
         modelWidget->repaint();
     }
