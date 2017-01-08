@@ -1,0 +1,4 @@
+bin/*
+config.make
+midi2osc.qbs
+obj/*
