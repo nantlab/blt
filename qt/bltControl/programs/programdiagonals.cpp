@@ -28,4 +28,5 @@ void programDiagonals::tick(modelWidget *modelWidget){
     }
 
     modelWidget->repaint();
+    emit modelWidget->modelChanged();
 }

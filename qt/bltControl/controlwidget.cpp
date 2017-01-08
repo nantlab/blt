@@ -4,7 +4,7 @@
 controlWidget::controlWidget(modelWidget *_modelWidget, QWidget *parent) :
     QWidget(parent),
     _oscSenderBar(new QOSCSender("192.168.178.10", 8010)),
-    //_oscSenderBar(new QOSCSender("127.0.0.1", 8000)),
+    //_oscSenderBar(new QOSCSender("127.0.0.1", 8010)),
     _oscSenderLeftBench(new QOSCSender("192.168.178.11", 8011)),
     _oscSenderMiddleBench(new QOSCSender("192.168.178.12", 8012)),
     _oscSenderRightBench(new QOSCSender("192.168.178.13", 8013)),

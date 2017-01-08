@@ -22,4 +22,5 @@ void programRandom::tick(modelWidget *modelWidget)
         }
     }
     modelWidget->repaint();
+    emit modelWidget->modelChanged();
 }

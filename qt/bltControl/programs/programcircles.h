@@ -40,6 +40,7 @@ public slots:
         modelWidget->clear(RIGHTBENCH, 0,0,255);
 
         modelWidget->repaint();
+        emit modelWidget->modelChanged();
     }
 };
 
