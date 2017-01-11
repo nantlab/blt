@@ -60,7 +60,7 @@ void controlWidget::onModelChanged()
     _oscSenderMiddleBench->send(middleBenchMessage);
     auto rightBenchMessage = new QOSCMessage("/all", this);
     //rightBenchMessage->add(_modelWidget->getSerializedRightBench());
-    auto rightBenchRgb = _modelWidget->getLeftBench()->pixel(0,0);
+    auto rightBenchRgb = _modelWidget->getRightBench()->pixel(0,0);
     color.setRgba(rightBenchRgb);
     rightBenchMessage->addInt(color.red());
     rightBenchMessage->addInt(color.green());
