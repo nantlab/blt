@@ -26,6 +26,7 @@ controlWidget::controlWidget(modelWidget *_modelWidget, QWidget *parent) :
     connect(getInputWidget()->getMetronomWidget()->getTimer(), SIGNAL(timeout()), _playerWidget, SLOT(tick()));
     //connect(getInputWidget()->getOscInputWidget(), SIGNAL(tick()), _playerWidget, SLOT(tick()));
     _inputWidget->setMaximumHeight(100);
+    _playerWidget->setMaximumHeight(400);
 }
 
 inputWidget *controlWidget::getInputWidget(){
