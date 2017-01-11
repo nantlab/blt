@@ -32,7 +32,6 @@ public:
     QImage* getRightBench();
 
 
-
 private:
     QImage *_bar;
     QImage *_leftBench;

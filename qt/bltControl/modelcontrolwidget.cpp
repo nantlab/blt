@@ -13,7 +13,8 @@ modelControlWidget::modelControlWidget(modelWidget *modelWidget, QWidget *parent
     auto barColorButton = new QPushButton("color bar", this);
     auto leftBenchColorButton = new QPushButton("color leftBench", this);
     auto middleBenchColorButton = new QPushButton("color middleBench", this);
-    auto rightBenchColorButton = new QPushButton("color ightBench", this);
+    auto rightBenchColorButton = new QPushButton("color rightBench", this);
+
     mainLayout->addWidget(barColorButton);
     mainLayout->addWidget(leftBenchColorButton);
     mainLayout->addWidget(middleBenchColorButton);

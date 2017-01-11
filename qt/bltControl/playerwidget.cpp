@@ -10,6 +10,7 @@
 #include "programs/programhearts.h"
 
 #include <QStringListModel>
+#include <QScrollBar>
 
 playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     QWidget(parent),
@@ -38,6 +39,7 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     QStringListModel *model = new QStringListModel();
     model->setStringList(listModel);
     _playlistWidget->setModel(model);
+    _playlistWidget->verticalScrollBar()->setStyleSheet("QScrollBar:vertical { width: 50px; }");
     mainLayout->addWidget(_controlWidget);
     mainLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Expanding));
     setLayout(mainLayout);
