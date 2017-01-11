@@ -34,6 +34,9 @@ private:
 
 public slots:
     void onModelChange();
+    void onCloseButtonClicked(){
+        close();
+    }
 };
 
 #endif // MAINWINDOW_H

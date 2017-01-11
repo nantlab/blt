@@ -44,8 +44,12 @@ public slots:
     }
 
     void play(int index){
+        if(_currentProgram != nullptr){
+            _currentProgram->getControlWidget()->setVisible(false);
+        }
         _currentProgramIndex = index;
         _currentProgram = _programs[_currentProgramIndex];
+        _currentProgram->getControlWidget()->setVisible(true);
     }
 
     void play(){
@@ -61,13 +65,11 @@ public slots:
     }
 
     void previous(){
-        qDebug()<<_currentProgramIndex;
         _currentProgramIndex--;
         _currentProgramIndex %= _programs.size();
         if(_currentProgramIndex<0){
             _currentProgramIndex = _programs.size()-1;
         }
-        qDebug()<<_currentProgramIndex;
         _currentProgram = _programs[_currentProgramIndex];
     }
 
@@ -77,7 +79,7 @@ public slots:
         _currentProgram = _programs[_currentProgramIndex];
     }
     void tick(){
-        if(_currentProgram != 0){
+        if(_currentProgram != nullptr){
             _currentProgram->tick(_modelWidget);
         }
     }

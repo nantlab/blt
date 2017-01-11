@@ -1,9 +1,12 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
+#include <QColorDialog>
 #include <QDebug>
 #include <QTimer>
 #include <QObject>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include "modelwidget.h"
 
 class program : public QObject
@@ -13,6 +16,7 @@ public:
     explicit program(QString name, int duration = 120, QObject *parent = 0);
     QString getName();
     int getDuration();
+    QWidget *getControlWidget();
 
 protected:
     QString _name;
@@ -20,6 +24,8 @@ protected:
     float _playposition;
     float _refreshTime;
     QTimer *_timer;
+    QWidget *_controlWidget;
+    QColor _backgroundColor;
 
 signals:
     void stopped();
@@ -30,6 +36,13 @@ public slots:
     void process();
 
     virtual void tick(modelWidget *modelWidget);
+    void onBackgroundColorButtonClicked(){
+        QColor color = QColorDialog::getColor(Qt::yellow, _controlWidget);
+        if( color.isValid() )
+        {
+            _backgroundColor = color;
+        }
+    }
 
 private slots:
     void timeOut(){

@@ -7,6 +7,7 @@
 #include "programs/programdiagonals.h"
 #include "programs/programrandom.h"
 #include "programs/programcircles.h"
+#include "programs/programhearts.h"
 
 playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     QWidget(parent),
@@ -15,11 +16,26 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     _playlistWidget(new QTableWidget(this)),
     _controlWidget(new playerControlWidget(this))
 {
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
+    _programs.push_back(new programHearts(120));
     _programs.push_back(new programDiagonals(120));
     _programs.push_back(new programRandom(120));
     _programs.push_back(new programCircles(120));
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(_playlistWidget);
+    for(int i = 0; i < _programs.size(); i++) {
+        auto controlWidget = _programs[i]->getControlWidget();
+        mainLayout->addWidget(controlWidget);
+    }
     mainLayout->addWidget(_controlWidget);
     setLayout(mainLayout);
 
@@ -44,4 +60,6 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     connect(_controlWidget->getNextButton(), SIGNAL(clicked(bool)), this, SLOT(next()));
 
     connect(_playlistWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(onProgramSelected(QModelIndex)));
+    _currentProgram = _programs[0];
+
 }

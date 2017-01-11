@@ -1,17 +1,17 @@
-#ifndef PROGRAMCIRCLES_H
-#define PROGRAMCIRCLES_H
+#ifndef PROGRAMHEARTS_H
+#define PROGRAMHEARTS_H
 
 #include <QObject>
 #include <QPushButton>
 #include "program.h"
 
-class programCircles :
+class programHearts :
         public program
 {
     Q_OBJECT
 public:
-    explicit programCircles(int duration, QObject *parent = 0) :
-        program("Circles", duration, parent),
+    explicit programHearts(int duration, QObject *parent = 0) :
+        program("Hearts", duration, parent),
         _currentIndex(0),
         _random(false),
         _commulate(false)
@@ -93,4 +93,4 @@ public slots:
     }
 };
 
-#endif // PROGRAMCIRCLES_H
+#endif // PROGRAMHEARTS_H

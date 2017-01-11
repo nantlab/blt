@@ -316,7 +316,6 @@ QByteArray modelWidget::getSerializedBar(){
     QByteArray ba;
     auto bits = _bar->bits();
     for(int i = 0; i < _bar->width() * _bar->height() * 3; i++){
-        qDebug()<<bits[i];
         ba.append(bits[i]);
     }
     return ba;

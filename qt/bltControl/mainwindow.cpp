@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QDebug>
 #include <QHBoxLayout>
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     leftWidgetLayout->addWidget(_modelWidget);
     leftWidgetLayout->addWidget(new modelControlWidget(_modelWidget, this));
     leftWidgetLayout->addSpacerItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
+    auto closeButton = new QToolButton();
+    connect(closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseButtonClicked()));
+    leftWidgetLayout->addWidget(closeButton);
     leftWidget->setLayout(leftWidgetLayout);
 
     mainLayout->addWidget(leftWidget);
@@ -32,11 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     showFullScreen();
     _modelWidget->setMinimumSize(500, 400);
-
-    _controlWidget->getPlayerWidget()->play(_program);
-
-
-
 
 }
 
