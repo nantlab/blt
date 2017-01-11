@@ -19,8 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     bltControlLabelFont.setPixelSize(48);
     bltControlLabel->setFont(bltControlLabelFont);
     leftWidgetLayout->addWidget(bltControlLabel);
-    leftWidgetLayout->addWidget(_modelWidget);
     leftWidgetLayout->addWidget(new modelControlWidget(_modelWidget, this));
+    leftWidgetLayout->addWidget(_modelWidget);
     leftWidgetLayout->addSpacerItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
     auto closeButton = new QToolButton();
     connect(closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseButtonClicked()));
@@ -34,8 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     mainWidget->setLayout(mainLayout);
     setCentralWidget(mainWidget);
 
-    showFullScreen();
-    _modelWidget->setMinimumSize(500, 400);
+    _modelWidget->setMinimumSize(300, 300);
+    setMinimumSize(800, 600);
+    QTimer::singleShot(1000, this, SLOT(showFullScreen()));
 
 }
 
