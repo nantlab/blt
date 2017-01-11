@@ -38,7 +38,7 @@ private:
         auto color = qRgb(red, green, blue);
         for(int y = row; y < row+2; y++){
             for(int x = column; x < column+3; x++){
-                image->setPixelColor(x, y, color);
+                image->setPixel(x, y, color);
             }
         }
     }
