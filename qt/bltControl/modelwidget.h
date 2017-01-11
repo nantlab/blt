@@ -18,6 +18,7 @@ class modelWidget : public QWidget
     Q_OBJECT
 public:
     explicit modelWidget(QWidget *parent = 0);
+    void update();
     void paintEvent(QPaintEvent * /* event */);
 
     QByteArray getSerializedBar();

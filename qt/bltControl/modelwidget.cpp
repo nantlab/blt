@@ -19,6 +19,13 @@ modelWidget::modelWidget(QWidget *parent) :
     emit modelChanged();
 }
 
+void modelWidget::update()
+{
+    repaint();
+    emit modelChanged();
+
+}
+
 void modelWidget::paintEvent(QPaintEvent *)
 {
     auto painter = new QPainter(this);

@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     bltControlLabel->setFont(bltControlLabelFont);
     leftWidgetLayout->addWidget(bltControlLabel);
     leftWidgetLayout->addWidget(_modelWidget);
+    leftWidgetLayout->addWidget(new modelControlWidget(_modelWidget, this));
     leftWidgetLayout->addSpacerItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
     leftWidget->setLayout(leftWidgetLayout);
 

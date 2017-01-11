@@ -21,6 +21,7 @@ controlWidget::controlWidget(modelWidget *_modelWidget, QWidget *parent) :
 
     connect(_modelWidget, SIGNAL(modelChanged()), this, SLOT(onModelChanged()));
     connect(getInputWidget()->getMetronomWidget()->getTimer(), SIGNAL(timeout()), _playerWidget, SLOT(tick()));
+    //connect(getInputWidget()->getOscInputWidget(), SIGNAL(tick()), _playerWidget, SLOT(tick()));
 }
 
 inputWidget *controlWidget::getInputWidget(){

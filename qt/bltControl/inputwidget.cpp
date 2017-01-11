@@ -14,3 +14,6 @@ inputWidget::inputWidget(QWidget *parent) :
 metronomWidget *inputWidget::getMetronomWidget(){
     return _metronomWidget;
 }
+oscInputWidget *inputWidget::getOscInputWidget(){
+    return _oscInputWidget;
+}

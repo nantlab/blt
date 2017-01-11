@@ -12,7 +12,7 @@ class inputWidget : public QTabWidget
 public:
     explicit inputWidget(QWidget *parent = 0);
     metronomWidget *getMetronomWidget();
-
+    oscInputWidget *getOscInputWidget();
 private:
     audioAnalyzerWidget *_audioAnalyzerWidget;
     metronomWidget *_metronomWidget;

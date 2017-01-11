@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "modelwidget.h"
+#include "modelcontrolwidget.h"
 #include "controlwidget.h"
 
 #include "qoscsender.h"
