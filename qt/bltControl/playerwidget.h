@@ -1,6 +1,7 @@
 #ifndef PLAYERWIDGET_H
 #define PLAYERWIDGET_H
 
+#include <QListView>
 #include <QTableWidget>
 #include <QThread>
 #include <QVector>
@@ -29,7 +30,7 @@ private:
     modelWidget *_modelWidget;
     QThread *_thread;
     QVector<program*> _programs;
-    QTableWidget *_playlistWidget;
+    QListView *_playlistWidget;
     playerControlWidget *_controlWidget;
     program* _currentProgram;
     int _currentProgramIndex;
