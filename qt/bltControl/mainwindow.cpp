@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _modelWidget->setMinimumSize(300, 300);
     setMinimumSize(800, 600);
-    QTimer::singleShot(1000, this, SLOT(showFullScreen()));
+    //QTimer::singleShot(1000, this, SLOT(showFullScreen()));
 
 }
 

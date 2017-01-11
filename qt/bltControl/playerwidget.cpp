@@ -18,15 +18,6 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
 {
     _programs.push_back(new programHearts(120));
     _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
     _programs.push_back(new programDiagonals(120));
     _programs.push_back(new programRandom(120));
     _programs.push_back(new programCircles(120));
@@ -37,23 +28,25 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
         mainLayout->addWidget(controlWidget);
     }
     mainLayout->addWidget(_controlWidget);
+    mainLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Expanding));
     setLayout(mainLayout);
 
 
     _playlistWidget->setRowCount(_programs.size());
-    _playlistWidget->setColumnCount(2);
+    _playlistWidget->setColumnCount(1);
     QStringList headers;
-    headers<<"Name"<<"Duration";
+    headers<<"Name";
     _playlistWidget->setHorizontalHeaderLabels(headers);
     _playlistWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     _playlistWidget->setShowGrid(false);
     _playlistWidget->verticalHeader()->setVisible(false);
+    _playlistWidget->horizontalHeader()->setVisible(false);
     _playlistWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
     for(int i = 0; i < _programs.size(); i++){
         _playlistWidget->setItem(i, 0, new QTableWidgetItem(_programs[i]->getName()));
-        _playlistWidget->setItem(i, 1, new QTableWidgetItem(QString::number(_programs[i]->getDuration())));
+        //_playlistWidget->setItem(i, 1, new QTableWidgetItem(QString::number(_programs[i]->getDuration())));
     }
 
     connect(_controlWidget->getPreviousButton(), SIGNAL(clicked(bool)), this, SLOT(previous()));
@@ -61,5 +54,7 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
 
     connect(_playlistWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(onProgramSelected(QModelIndex)));
     _currentProgram = _programs[0];
+
+    _playlistWidget->setMaximumHeight(200);
 
 }
