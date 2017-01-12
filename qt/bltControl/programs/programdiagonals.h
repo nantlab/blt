@@ -12,7 +12,7 @@ class programDiagonals :
 public:
     explicit programDiagonals(int duration, QObject *parent = 0) :
         program("diagonals", duration, parent),
-        _foregroundColor(QColor(255, 255, 0))
+        _foregroundColor(QColor(0, 255, 255))
     {
         auto foregroundColorButton = new QPushButton("foregroundColor");
         connect(foregroundColorButton, SIGNAL(clicked(bool)), this, SLOT(onForegroundColorButtonChlicked()));
@@ -50,7 +50,7 @@ public slots:
     }
 
     void onForegroundColorButtonChlicked(){
-        QColor color = QColorDialog::getColor(Qt::yellow, _controlWidget);
+        QColor color = QColorDialog::getColor(_foregroundColor, _controlWidget);
         if( color.isValid() )
         {
             _foregroundColor = color;

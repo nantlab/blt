@@ -15,7 +15,7 @@ class programRandom :
 public:
     explicit programRandom(int duration, QObject *parent = 0) :
         program("random", duration, parent),
-        _foregroundColor(QColor(255, 0, 0)),
+        _foregroundColor(QColor(0, 255, 255)),
         _tupelSize(2)
     {
         auto foregroundColorButton = new QPushButton("foregroundColor");
@@ -41,8 +41,6 @@ public slots:
     void tick(modelWidget *modelWidget)
     {
         modelWidget->clear(BAR, _backgroundColor.red(), _backgroundColor.green(), _backgroundColor.blue());
-        modelWidget->clearLeftBench();
-        modelWidget->getLeftBench()->setPixel(0, 1, qRgb(0,0,0));
         auto image = modelWidget->getBar();
 
         for(int i = 0; i < 3; i++){
@@ -55,15 +53,8 @@ public slots:
         modelWidget->repaint();
         emit modelWidget->modelChanged();
     }
-    void onBackgroundColorButtonClicked(){
-        QColor color = QColorDialog::getColor(Qt::yellow, _controlWidget);
-        if( color.isValid() )
-        {
-            _backgroundColor = color;
-        }
-    }
     void onForegroundColorButtonChlicked(){
-        QColor color = QColorDialog::getColor(Qt::yellow, _controlWidget);
+        QColor color = QColorDialog::getColor(_foregroundColor, _controlWidget);
         if( color.isValid() )
         {
             _foregroundColor = color;

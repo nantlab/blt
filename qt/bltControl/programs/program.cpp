@@ -7,14 +7,15 @@ program::program(QString name, int duration, QObject *parent) :
     _playposition(0),
     _refreshTime(1000),
     _timer(new QTimer(this)),
-    _controlWidget(new QWidget)
+    _controlWidget(new QWidget),
+    _backgroundColor(QColor(232, 47, 0))
 {
     connect(_timer, SIGNAL(timeout()), this, SLOT(timeOut()));
     _timer->setInterval(_refreshTime);
     _controlWidget->setLayout(new QGridLayout());
     _controlWidget->setVisible(false);
 
-    auto backgroundColorButton = new QPushButton("foregroundColor");
+    auto backgroundColorButton = new QPushButton("backgroundColor");
     ((QGridLayout*)(_controlWidget->layout()))->addWidget(backgroundColorButton, 0, 0);
 
     connect(backgroundColorButton, SIGNAL(clicked(bool)), this, SLOT(onBackgroundColorButtonClicked()));
