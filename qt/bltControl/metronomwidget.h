@@ -27,11 +27,15 @@ private:
     QLabel *_timeLabel;
 
 signals:
+    void started();
+    void tick();
 
 public slots:
+    void start();
+    void stop();
 private slots:
-    void onStarted();
-    void onStopped();
+    void onTimeOut();
+
 
     void onIntervalChanged(int value);
 };

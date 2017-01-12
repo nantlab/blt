@@ -1,4 +1,5 @@
 #include "metronomwidget.h"
+#include <QDebug>
 #include <QHBoxLayout>
 #include <QSlider>
 #include <QSpinBox>
@@ -22,10 +23,10 @@ metronomWidget::metronomWidget(QWidget *parent) :
     mainLayout->addWidget(_timeLabel);
 
     _timer->setInterval(500);
-
+    connect(_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
     connect(timeSlider, SIGNAL(valueChanged(int)), this, SLOT(onIntervalChanged(int)));
-    connect(_onState, SIGNAL(entered()), this, SLOT(onStarted()));
-    connect(_offState, SIGNAL(entered()), this, SLOT(onStopped()));
+    connect(_onState, SIGNAL(entered()), this, SLOT(start()));
+    connect(_offState, SIGNAL(entered()), this, SLOT(stop()));
 
     _onState->addTransition(_startButton, SIGNAL(clicked(bool)), _offState);
     _offState->addTransition(_startButton, SIGNAL(clicked(bool)), _onState);
@@ -40,14 +41,20 @@ QTimer *metronomWidget::getTimer(){
     return _timer;
 }
 
-void metronomWidget::onStarted(){
+void metronomWidget::start(){
     _startButton->setIcon(QIcon(":icons/font-awesome_4-7-0_pause_256_0_d35400_none.png"));
     _timer->start();
+    emit started();
 }
 
-void metronomWidget::onStopped(){
+void metronomWidget::stop(){
     _startButton->setIcon(QIcon(":icons/font-awesome_4-7-0_play_256_0_d35400_none.png"));
     _timer->stop();
+}
+
+void metronomWidget::onTimeOut(){
+    qDebug()<<"metro tick";
+    emit tick();
 }
 
 void metronomWidget::onIntervalChanged(int value)

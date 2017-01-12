@@ -22,6 +22,9 @@ signals:
     void tick();
 
 public slots:
+    void onTick();
+    void onMetronomStarted();
+    void onOscInputStarted();
 };
 
 #endif // INPUTWIDGET_H
