@@ -52,7 +52,8 @@ HEADERS  += mainwindow.h \
     playercontrolwidget.h \
     programs/programcircles.h \
     modelcontrolwidget.h \
-    programs/programhearts.h
+    programs/programhearts.h \
+    programs/programrows.h
 
 CONFIG += mobility c++11
 MOBILITY = 

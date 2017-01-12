@@ -26,9 +26,10 @@ public:
         connect(foregroundColorButton, SIGNAL(clicked(bool)), this, SLOT(onForegroundColorButtonChlicked()));
         connect(tupelSizeSlider, SIGNAL(valueChanged(int)), this, SLOT(onTupelSizeChanged(int)));
 
-        _controlWidget->layout()->addWidget(foregroundColorButton);
-        _controlWidget->layout()->addWidget(new QLabel("size"));
-        _controlWidget->layout()->addWidget(tupelSizeSlider);
+
+        ((QGridLayout*)(_controlWidget->layout()))->addWidget(foregroundColorButton, 1,0);
+        //((QGridLayout*)(_controlWidget->layout()))->addWidget(new QLabel("size"), 0, 1);
+        ((QGridLayout*)(_controlWidget->layout()))->addWidget(tupelSizeSlider, 2, 0);
     }
 private:
     QColor _foregroundColor;

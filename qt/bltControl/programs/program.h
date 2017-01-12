@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QGridLayout>
 #include "modelwidget.h"
 
 class program : public QObject

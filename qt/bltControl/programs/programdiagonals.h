@@ -16,7 +16,7 @@ public:
     {
         auto foregroundColorButton = new QPushButton("foregroundColor");
         connect(foregroundColorButton, SIGNAL(clicked(bool)), this, SLOT(onForegroundColorButtonChlicked()));
-        _controlWidget->layout()->addWidget(foregroundColorButton);
+        ((QGridLayout*)(_controlWidget->layout()))->addWidget(foregroundColorButton, 1, 0);
     }
 
 private:

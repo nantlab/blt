@@ -11,11 +11,11 @@ program::program(QString name, int duration, QObject *parent) :
 {
     connect(_timer, SIGNAL(timeout()), this, SLOT(timeOut()));
     _timer->setInterval(_refreshTime);
-    _controlWidget->setLayout(new QVBoxLayout());
+    _controlWidget->setLayout(new QGridLayout());
     _controlWidget->setVisible(false);
 
-    auto backgroundColorButton = new QPushButton("backgroundColor");
-    _controlWidget->layout()->addWidget(backgroundColorButton);
+    auto backgroundColorButton = new QPushButton("foregroundColor");
+    ((QGridLayout*)(_controlWidget->layout()))->addWidget(backgroundColorButton, 0, 0);
 
     connect(backgroundColorButton, SIGNAL(clicked(bool)), this, SLOT(onBackgroundColorButtonClicked()));
 }

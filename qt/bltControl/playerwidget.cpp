@@ -8,6 +8,7 @@
 #include "programs/programrandom.h"
 #include "programs/programcircles.h"
 #include "programs/programhearts.h"
+#include "programs/programrows.h"
 
 #include <QStringListModel>
 #include <QScrollBar>
@@ -20,12 +21,8 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     _controlWidget(new playerControlWidget(this))
 {
     _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
-    _programs.push_back(new programHearts(120));
     _programs.push_back(new programDiagonals(120));
+    _programs.push_back(new programRows(120));
     _programs.push_back(new programRandom(120));
     _programs.push_back(new programCircles(120));
     QStringList listModel;

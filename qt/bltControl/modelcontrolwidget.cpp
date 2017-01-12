@@ -39,7 +39,7 @@ void modelControlWidget::onBarColorButtonClicked(){
 }
 
 void modelControlWidget::onLeftBenchColorButtonClicked(){
-    QColor color = QColorDialog::getColor(Qt::yellow, this );
+    QColor color = QColorDialog::getColor(QColor(232, 47, 0));
     if( color.isValid() )
     {
         _modelWidget->clear(LEFTBENCH, color.red(), color.green(), color.blue());
@@ -49,7 +49,7 @@ void modelControlWidget::onLeftBenchColorButtonClicked(){
 
 void modelControlWidget::onMiddleBenchColorButtonClicked()
 {
-    QColor color = QColorDialog::getColor(Qt::yellow, this );
+    QColor color = QColorDialog::getColor(QColor(232, 47, 0));
     if( color.isValid() )
     {
         _modelWidget->clear(MIDDLEBENCH, color.red(), color.green(), color.blue());
@@ -58,7 +58,7 @@ void modelControlWidget::onMiddleBenchColorButtonClicked()
 }
 void modelControlWidget::onRightBenchColorButtonClicked()
 {
-    QColor color = QColorDialog::getColor(Qt::yellow, this );
+    QColor color = QColorDialog::getColor(QColor(232, 47, 0));
     if( color.isValid() )
     {
         _modelWidget->clear(RIGHTBENCH, color.red(), color.green(), color.blue());

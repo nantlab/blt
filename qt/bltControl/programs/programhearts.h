@@ -25,9 +25,9 @@ public:
         connect(randomButton, SIGNAL(toggled(bool)), this, SLOT(onRandomChanged(bool)));
         connect(commulateButton, SIGNAL(toggled(bool)), this, SLOT(onCommulateChanged(bool)));
 
-        _controlWidget->layout()->addWidget(randomButton);
-        _controlWidget->layout()->addWidget(commulateButton);
 
+        ((QGridLayout*)(_controlWidget->layout()))->addWidget(randomButton, 0, 1);
+        ((QGridLayout*)(_controlWidget->layout()))->addWidget(commulateButton, 1, 1);
     }
 
 private:
