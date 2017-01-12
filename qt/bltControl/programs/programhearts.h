@@ -42,22 +42,6 @@ private:
             }
         }
     }
-    QPoint getPosition(int circleIndex){
-        switch(circleIndex){
-        case 0:
-            return QPoint(0,0);
-            break;
-        case 1:
-            return QPoint(3,1);
-            break;
-        case 2:
-            return QPoint(6,0);
-            break;
-        case 3:
-            return QPoint(9,1);
-            break;
-        }
-    }
 
 signals:
 
@@ -66,23 +50,40 @@ public slots:
         modelWidget->clear(BAR, _backgroundColor.red(), _backgroundColor.green(), _backgroundColor.blue());
         auto image = modelWidget->getBar();
         auto color = qRgb(qrand()%255, qrand()%255, qrand()%255);
-        if(_random){
-            qDebug()<<"rnadom";
-            _currentIndex = qrand();
-            _currentIndex %= 4;
-        }
+        _currentIndex++;
+        _currentIndex %= 3;
 
         if(_commulate){
             for(int i = 0; i <= _currentIndex; i++){
-                makeCircle(image, getPosition(i).x(), getPosition(i).y(), 255, 0 , 0);
+                makeHeart(image, getPosition(i).x(), getPosition(i).y(), 255, 0 , 0);
             }
         }else{
-            makeCircle(image, getPosition(_currentIndex).x(), getPosition(_currentIndex).y(), qrand()%255, qrand()%255, qrand()%255);
+            makeHeart(image, getPosition(_currentIndex).x(), getPosition(_currentIndex).y(), qrand()%255, qrand()%255, qrand()%255);
         }
-        _currentIndex++;
-        _currentIndex %= 4;
         modelWidget->repaint();
         emit modelWidget->modelChanged();
+    }
+    QPoint getPosition(int index){
+        switch(index){
+        case 0:
+            return QPoint(0,0);
+            break;
+        case 1:
+            return QPoint(4,0);
+            break;
+        case 2:
+            return QPoint(8,0);
+            break;
+        }
+    }
+    void makeHeart(QImage *image, int column, int row, int red, int green, int blue){
+        auto color = qRgb(red, green, blue);
+        image->setPixel(column, row, color);
+        image->setPixel(column+2, row, color);
+        image->setPixel(column, row+1, color);
+        image->setPixel(column+1, row+1, color);
+        image->setPixel(column+2, row+1, color);
+        image->setPixel(column+1, row+2, color);
     }
     void onRandomChanged(bool value){
         _random = !_random;

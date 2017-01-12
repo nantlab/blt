@@ -16,6 +16,10 @@ modelWidget::modelWidget(QWidget *parent) :
     clearLeftBench();
     clearMiddleBench();
     clearRightBench();
+
+    clear(LEFTBENCH, 232, 47, 0);
+    clear(MIDDLEBENCH, 232, 47, 0);
+    clear(RIGHTBENCH, 232, 47, 0);
     emit modelChanged();
 }
 
