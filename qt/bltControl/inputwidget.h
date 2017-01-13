@@ -13,8 +13,9 @@ public:
     explicit inputWidget(QWidget *parent = 0);
     metronomWidget *getMetronomWidget();
     oscInputWidget *getOscInputWidget();
+    audioInputWidget *getAudioInputWidget();
 private:
-    audioAnalyzerWidget *_audioAnalyzerWidget;
+    audioInputWidget *_audioInputWidget;
     metronomWidget *_metronomWidget;
     oscInputWidget *_oscInputWidget;
 
@@ -23,6 +24,7 @@ signals:
 
 public slots:
     void onTick();
+    void onAudioInputStarted();
     void onMetronomStarted();
     void onOscInputStarted();
 };

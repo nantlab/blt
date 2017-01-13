@@ -1,6 +1,7 @@
 #include "oscinputwidget.h"
 #include <QDebug>
 #include <QHBoxLayout>
+#include <QLabel>
 
 oscInputWidget::oscInputWidget(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +14,7 @@ oscInputWidget::oscInputWidget(QWidget *parent) :
 {
     auto mainLayout = new QHBoxLayout(this);
     mainLayout->addWidget(_startButton);
+    mainLayout->addWidget(new QLabel("port: 8000, address: /tick, args: int:1"));
 
     connect(_receiver, SIGNAL(messageReceived(QOSCMessage*)), this, SLOT(onOscMessage(QOSCMessage*)));
     _receiver->start();
