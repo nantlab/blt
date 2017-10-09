@@ -18,7 +18,15 @@ MainWindow::MainWindow(QWidget *parent) :
     bltControlLabelFont.setBold(true);
     bltControlLabelFont.setPixelSize(48);
     bltControlLabel->setFont(bltControlLabelFont);
-    leftWidgetLayout->addWidget(bltControlLabel);
+	auto headingWidget = new QWidget(mainWidget);
+	auto headingLayout = new QHBoxLayout(headingWidget);
+	headingWidget->setLayout(headingLayout);
+	auto closeButton = new QPushButton("x");
+	closeButton->setMaximumWidth(50);
+	connect(closeButton, SIGNAL(clicked(bool)), this, SLOT(close()));
+	headingLayout->addWidget(bltControlLabel);
+	headingLayout->addWidget(closeButton);
+	leftWidgetLayout->addWidget(headingWidget);
     leftWidgetLayout->addWidget(new modelControlWidget(_modelWidget, this));
     leftWidgetLayout->addWidget(_modelWidget);
     leftWidgetLayout->addSpacerItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
