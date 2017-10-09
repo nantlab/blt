@@ -17,8 +17,8 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     QWidget(parent),
     _modelWidget(modelWidget),
     _thread(new QThread(this)),
-    _playlistWidget(new QListView(this)),
-    _controlWidget(new playerControlWidget(this))
+	_playlistWidget(new QListView(this))
+//    _controlWidget(new playerControlWidget(this))
 {
     _programs.push_back(new programHearts(120));
     _programs.push_back(new programDiagonals(120));
@@ -37,7 +37,7 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     model->setStringList(listModel);
     _playlistWidget->setModel(model);
     _playlistWidget->verticalScrollBar()->setStyleSheet("QScrollBar:vertical { width: 50px; }");
-    mainLayout->addWidget(_controlWidget);
+//    mainLayout->addWidget(_controlWidget);
     mainLayout->addSpacerItem(new QSpacerItem(1,1, QSizePolicy::Expanding));
     setLayout(mainLayout);
 
@@ -55,8 +55,8 @@ playerWidget::playerWidget(modelWidget *modelWidget, QWidget *parent) :
     _playlistWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 */
 
-    connect(_controlWidget->getPreviousButton(), SIGNAL(clicked(bool)), this, SLOT(previous()));
-    connect(_controlWidget->getNextButton(), SIGNAL(clicked(bool)), this, SLOT(next()));
+//    connect(_controlWidget->getPreviousButton(), SIGNAL(clicked(bool)), this, SLOT(previous()));
+//    connect(_controlWidget->getNextButton(), SIGNAL(clicked(bool)), this, SLOT(next()));
 
     connect(_playlistWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(onProgramSelected(QModelIndex)));
     _currentProgram = _programs[0];

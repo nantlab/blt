@@ -12,20 +12,20 @@ controlWidget::controlWidget(modelWidget *_modelWidget, QWidget *parent) :
     _oscSenderRightBench(new QOSCSender("192.168.178.13", 8013)),
     //_oscSenderRightBench(new QOSCSender("127.0.0.1", 8013)),
     _modelWidget(_modelWidget),
-    _inputWidget(new inputWidget()),
-    _playerWidget(new playerWidget(_modelWidget))
+	_inputWidget(new inputWidget()),
+	_playerWidget(new playerWidget(_modelWidget))
 {
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(_inputWidget);
-    mainLayout->addWidget(_playerWidget);
+	mainLayout->addWidget(_playerWidget);
 
     setLayout(mainLayout);
 
 
     connect(_modelWidget, SIGNAL(modelChanged()), this, SLOT(onModelChanged()));
-    connect(_inputWidget, SIGNAL(tick()), _playerWidget, SLOT(tick()));
+	connect(_inputWidget, SIGNAL(tick()), _playerWidget, SLOT(tick()));
     _inputWidget->setMaximumHeight(100);
-    _playerWidget->setMaximumHeight(400);
+	_playerWidget->setMaximumHeight(400);
 }
 
 inputWidget *controlWidget::getInputWidget(){
