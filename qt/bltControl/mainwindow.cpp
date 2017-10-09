@@ -22,9 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
     leftWidgetLayout->addWidget(new modelControlWidget(_modelWidget, this));
     leftWidgetLayout->addWidget(_modelWidget);
     leftWidgetLayout->addSpacerItem(new QSpacerItem(1,1,QSizePolicy::Expanding));
-    auto closeButton = new QToolButton();
-    connect(closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseButtonClicked()));
-    leftWidgetLayout->addWidget(closeButton);
+//    auto closeButton = new QToolButton();
+//    connect(closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseButtonClicked()));
+//    leftWidgetLayout->addWidget(closeButton);
     leftWidget->setLayout(leftWidgetLayout);
 
     mainLayout->addWidget(leftWidget);
@@ -35,9 +35,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(mainWidget);
 
     _modelWidget->setMinimumSize(300, 300);
-    setMinimumSize(800, 600);
-    //QTimer::singleShot(1000, this, SLOT(showFullScreen()));
-
+	_modelWidget->setMaximumHeight(400);
+//    setMinimumSize(800, 600);
+	QTimer::singleShot(1000, this, SLOT(showFullScreen()));
 }
 
 MainWindow::~MainWindow()
